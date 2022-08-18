@@ -4,7 +4,6 @@
 # Requires these, provided in action.yml:
 # - ADD_PR_COMMENT (skip unless "Yes")
 # - PR_COMMENT_TOKEN (fail if empty)
-# - COMMENTS_URL (skip if empty)
 # - Current working directory is in the config repo
 
 _planfile="${GITHUB_WORKSPACE}/octodns-sync.plan"
@@ -20,11 +19,6 @@ else
   exit 0
 fi
 
-if [ -z "${COMMENTS_URL}" ]; then
-  echo "SKIP: \$COMMENTS_URL is not set."
-  echo "Was this workflow run triggered from a pull request?"
-  exit 0
-fi
 
 # Construct the comment body
 _sha="$(git log -1 --format='%h')"
